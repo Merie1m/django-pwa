@@ -2,10 +2,10 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 # Import des modèles définis précédemment
-from .models import OfflineAsset, PushSubscription
+from .models import Project, Task, Comment, Notification
 from django.http import FileResponse, Http404
 # Import des serializers qui transforment les objets en JSON (et inversement)
-from .serializers import OfflineAssetSerializer, PushSubscriptionSerializer
+from .serializers import OfflineAssetSerializer, PushSubscriptionSerializer,ProjectSerializer, TaskSerializer, CommentSerializer, NotificationSerializer
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -39,7 +39,6 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .models import Task
 from .serializers import TaskSerializer
 from rest_framework.permissions import AllowAny
 from rest_framework.authentication import BasicAuthentication
@@ -134,6 +133,56 @@ class TaskViewset(viewsets.ModelViewSet):
         user = self.request.user
         return Task.objects.filter(user=user)
 
+
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    serializer_class = ProjectSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Project.objects.filter(users=self.request.user)
+
+    def perform_create(self, serializer):
+        project = serializer.save()
+        project.users.add(self.request.user)
+        
+class ProjectViewSet(viewsets.ModelViewSet):
+    serializer_class = ProjectSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Project.objects.filter(users=self.request.user)
+
+    def perform_create(self, serializer):
+        project = serializer.save()
+        project.users.add(self.request.user)
+
+class TaskViewSet(viewsets.ModelViewSet):
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class CommentViewSet(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Comment.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class NotificationViewSet(viewsets.ModelViewSet):
+    serializer_class = NotificationSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Notification.objects.filter(user=self.request.user)
 
   #manifest
 def manifest(request):

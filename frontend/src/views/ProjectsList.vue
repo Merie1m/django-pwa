@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Liste des tâches</h2>
+    <h2>Liste des Projets</h2>
     <ul>
       <li v-for="task in tasks" :key="task.id" class="task-item">
         <h3>{{ task.title }}</h3>
@@ -11,10 +11,6 @@
       </li>
     </ul>
   </div>
-  <router-link :to="{ name: 'Projects' }">
-  <button>📁 See all my projects</button>
-</router-link>
-
 </template>
 
 <script>

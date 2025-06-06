@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from pwa.views import OfflineAssetViewSet, PushSubscriptionViewSet
+from pwa.views import OfflineAssetViewSet, PushSubscriptionViewSet,TaskViewset,ProjectViewSet,CommentViewSet,NotificationViewSet
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
 from pwa.schema import schema
@@ -12,14 +12,12 @@ from pwa.views import TaskViewset
 from rest_framework.views import APIView
 from django.urls import path
 
-
-
-
-
-
 router = routers.DefaultRouter()
 router.register(r'offline-assets', OfflineAssetViewSet)
 router.register(r'push-subscriptions', PushSubscriptionViewSet)
+router.register(r'projects', ProjectViewSet, basename='project')
+router.register(r'comments', CommentViewSet, basename='comment')
+router.register(r'notifications', NotificationViewSet, basename='notification')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

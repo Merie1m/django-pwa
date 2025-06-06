@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import OfflineAsset, PushSubscription,Task
+from .models import OfflineAsset, PushSubscription,Task,Project,Comment, Notification
 
 
 class OfflineAssetSerializer(serializers.ModelSerializer):
@@ -57,4 +57,24 @@ from .models import Task
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
+        fields = '__all__'
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
         fields = '__all__'
