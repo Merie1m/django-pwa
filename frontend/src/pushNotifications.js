@@ -23,9 +23,9 @@ export async function subscribeToPush() {
 
     // Définit les options pour l’abonnement push, notamment la clé publique VAPID
     const subscribeOptions = {
-      userVisibleOnly: true, // Oblige une notification visible à l'utilisateur
+      userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(
-        "BFpFdb9CidGYwsRL0i3bHkIXrV0cLi81RBxvjEaazhxzShRKc-FmLwYPHHrQ0k4JKK-BP2khuJbyYw09VKQqS-g"
+        "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWkV1v0KJ0ZjCxEvSLdseQhetXRwuLzVEHG-MRprOHHNKFEpz4WYvBg8cetDSTgkor4EaSG4lvJjDT1UpCpL6A"
       )
     };
 

@@ -5,6 +5,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+import './registerServiceWorker'
 
 const app = createApp(App)
 
@@ -15,13 +16,13 @@ app.mount('#app')
 
 // 🔐 Demander la permission de notification
 //if ('Notification' in window && navigator.serviceWorker) {
- // Notification.requestPermission().then(permission => {
-    //if (permission === 'granted') {
-     // console.log("✅ Notifications autorisées !");
-    //} else {
-     // console.warn("🚫 Notifications refusées.");
-    //}
- // });
+// Notification.requestPermission().then(permission => {
+//if (permission === 'granted') {
+// console.log("✅ Notifications autorisées !");
+//} else {
+// console.warn("🚫 Notifications refusées.");
+//}
+// });
 //}
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

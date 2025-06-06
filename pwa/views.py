@@ -145,11 +145,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         project = serializer.save()
         project.users.add(self.request.user)
-        
+
 class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
-
+    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     def get_queryset(self):
         return Project.objects.filter(users=self.request.user)
 
@@ -159,7 +159,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
@@ -169,7 +170,8 @@ class TaskViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         return Comment.objects.filter(user=self.request.user)
@@ -179,7 +181,8 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class NotificationViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         return Notification.objects.filter(user=self.request.user)
