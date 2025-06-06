@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Liste des tâches</h2>
+    
     <ul>
       <li v-for="task in tasks" :key="task.id" class="task-item">
         <h3>{{ task.title }}</h3>
