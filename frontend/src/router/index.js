@@ -23,7 +23,7 @@ const routes = [
   },
   { 
     path: '/projects', 
-    name: 'Projects',       // ← Ajout du name (celui qui manquait !)
+    name: 'Projects',       
     component: ProjectList 
   },
   { 
