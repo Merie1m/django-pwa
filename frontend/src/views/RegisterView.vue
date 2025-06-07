@@ -9,8 +9,8 @@
 // Ensuite, on envoie cet abonnement au backend pour pouvoir lui envoyer des notifications plus tard.
 
 <template>
-  <div>
-    <h2>Créer un compte</h2>
+  <div style="max-width: 500px; margin: 2rem auto; padding: 2rem; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h2 style="color: #2c3e50; margin-bottom: 1.5rem;">Inscription</h2>
     <form @submit.prevent="register">
       <input v-model="name" placeholder="Nom" required />
       <input v-model="email" type="email" placeholder="Email" required />
