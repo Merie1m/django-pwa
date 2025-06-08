@@ -1,32 +1,6 @@
-Projet PWA (Progressive Web App) avec Django
+
 Description du Projet
 Ce projet implémente une Progressive Web App complète avec Django, incluant la gestion des assets hors ligne, les notifications push, et la synchronisation des données. Le système utilise Django REST Framework et GraphQL pour les API, avec une architecture sécurisée pour la gestion des clés de chiffrement.
-Table des Matières
-Architecture du Projet
-Modèles de Données
-Authentification et Sécurité
-API REST
-API GraphQL
-Service Worker
-Notifications Push
-Installation et Configuration
-Tests
-Déploiement
-Architecture du Projet
-projet/
-├── pwa/
-│   ├── models.py          # Modèles OfflineAsset et PushSubscription
-│   ├── serializers.py     # Sérialiseurs DRF
-│   ├── schema.py          # Types et mutations GraphQL
-│   ├── views.py           # Vues REST API
-│   ├── urls.py            # Configuration des URLs
-│   └── admin.py           # Interface d'administration
-├── static/
-│   └── sw.js              # Service Worker
-├── templates/
-├── requirements.txt
-└── manage.py
-
 Modèles de Données
 OfflineAsset
 Le modèle OfflineAsset gère les ressources disponibles hors ligne 
@@ -83,16 +57,6 @@ POST /api/assets/
 PUT /api/assets/{id}/
 DELETE /api/assets/{id}/
 
-Exemple de réponse :
-{
-    "id": 1,
-    "url": "https://example.com/app.js",
-    "content_type": "application/javascript",
-    "size": 15432,
-    "version": "1.2.0",
-    "is_critical": true,
-    "last_modified": "2025-06-08T10:30:00Z"
-}
 
 Abonnements Push
 GET /api/push-subscriptions/
@@ -100,14 +64,6 @@ POST /api/push-subscriptions/
 GET /api/push-subscriptions/decrypted/
 DELETE /api/push-subscriptions/{id}/
 
-Création d'abonnement :
-{
-    "endpoint": "https://fcm.googleapis.com/fcm/send/...",
-    "keys": {
-        "p256dh": "clé_publique_base64",
-        "auth": "clé_auth_base64"
-    }
-}
 
 Service Worker
 GET /sw.js
@@ -134,8 +90,7 @@ Navigation fluide entre les différentes sections
 Notifications Push Hors Ligne
 Le service worker prend en charge l'envoi de notifications push même en mode hors ligne, avec la possibilité de :
 Tester les notifications via les DevTools du navigateur
-Maintenir la communication avec l'utilisateur sans connexion active
-
+Maintenir la communication avec l'utilisateur sans connexion activ
 Validation des Données
 Tous les endpoints incluent une validation robuste :
 Endpoints Push : Validation du format URL et de la structure des clés
@@ -219,12 +174,6 @@ Push Notifications
     self.registration.showNotification(data.title, data.options);
 });
 
-
-Amélioriations Possibles
-Stratégies de cache plus sophistiquées
-Gestion des erreurs réseau
-Optimisation de la taille du cache
-Analytics hors ligne
 Notifications Push
 Configuration VAPID
 # test_vapid.py
